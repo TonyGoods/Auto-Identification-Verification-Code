@@ -1,6 +1,7 @@
 from ValueOperation import saveValue
 import tensorflow as tf
 from GetImageValue import getImageValue
+from VerityCode import veritify
 
 
 def train():
@@ -33,9 +34,11 @@ def train():
     with tf.Session() as sess:
         initParam = tf.global_variables_initializer()
         sess.run(initParam)
-        STEPS = 40000
+        STEPS = 100000
         for i in range(STEPS):
             sess.run(train_step, feed_dict={x: IMAGE_X, y_: IMAGE_Y})
-            print(str(i) + '...')
-            print(sess.run(loss, feed_dict={x: IMAGE_X, y_: IMAGE_Y}))
-        saveValue(sess.run(w1), sess.run(w2), sess.run(w3))
+            if i % 1000 == 0:
+                print(str(i) + '...')
+                print(sess.run(loss, feed_dict={x: IMAGE_X, y_: IMAGE_Y}))
+                saveValue(sess.run(w1), sess.run(w2), sess.run(w3))
+                veritify()

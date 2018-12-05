@@ -15,7 +15,6 @@ def saveValue(w1, w2, w3):
         for j in range(len(w3[i])):
             file.write(str(w3[i][j]) + '\n')
         file.write('wrap\n')
-    print('save successful')
 
 
 def getValue():
@@ -58,5 +57,4 @@ def getValue():
             w3.pop()
             break
         w3[i].append(float(line))
-    print(len(w2))
     return w1, w2, w3
